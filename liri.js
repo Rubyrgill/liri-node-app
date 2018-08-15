@@ -12,6 +12,7 @@ var fs = require("fs");
 //Spotify
 var Spotify = require("node-spotify-api");
 var spotify = new Spotify(keys.spotify);
+var trackName = process.argv[3];
 //request
 var request = require("request");
 //input
@@ -48,9 +49,9 @@ switch (liriReturn) {
 //TWITTER FUNCTION
 function myTweets() {
     //username
-    var parameter = { screen_name: "rubyrgill1", count: 20 };
+    var param = { screen_name: "rubyrgill1", count: 20 };
     //grabbing information from user
-    client.get("statuses/user_timeline", parameter, function (err, tweets, response) {
+    client.get("statuses/user_timeline", param, function (err, tweets, response) {
         //if error, then display
         if (err) {
             console.log(err);
@@ -58,14 +59,14 @@ function myTweets() {
         } else {
             //otherwise, display recent 20 tweets
             for (var i = 0; i < tweets.length; i++) {
+                console.log("-----------------------------------")
                 console.log(tweets[i].text);
-                console.log(response);
             };
         }
     });
 }
 
-var trackName = process.argv[3];
+
 
 //SPOTIFY FUNCTION
 function spotifyThisSong() {
@@ -178,28 +179,3 @@ function doWhatItSays() {
         }
     });
 }
-
-// console.log(command);
-// console.log(parameter)
-
-// parameter = parameter.replace('"', '');
-// parameter = parameter.replace('"', '');
-
-// console.log(parameter)
-// switch (command) {
-//     case 'my-tweets':
-//         Value = parameter;
-//         myTweets();
-//         break;
-//     case 'spotify-this-song':
-//         Value = parameter;
-//         spotify();
-//         break;
-
-//     case 'movie-this':
-//         Value = parameter;
-//         imdb();
-//         break;
-// }
-
-
