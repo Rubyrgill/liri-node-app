@@ -52,6 +52,8 @@ function myTweets() {
     var param = { screen_name: "rubyrgill1", count: 20 };
     //grabbing information from user
     client.get("statuses/user_timeline", param, function (err, tweets, response) {
+
+
         //if error, then display
         if (err) {
             console.log(err);
@@ -59,8 +61,10 @@ function myTweets() {
         } else {
             //otherwise, display recent 20 tweets
             for (var i = 0; i < tweets.length; i++) {
-                console.log("-----------------------------------")
+                var date = tweets[i].created_at;
+                console.log("-----------------------------------");
                 console.log(tweets[i].text);
+                console.log(date);
             };
         }
     });
